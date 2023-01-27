@@ -19,7 +19,7 @@ const ListItem = ({ index }) => {
                 isHovered && (
                     <>
                         <video 
-                            src="../../images/test.mp4"       
+                            src="../../images/titanic.mp4"       
                             autoPlay={true}
                             type="video/mp4"
                             loop
