@@ -1,6 +1,6 @@
 import React from 'react';
 import "./app.scss"
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 // pages
 import Home from './pages/home/Home';
@@ -10,14 +10,45 @@ import Watch from './pages/watch/Watch';
 import Error from './pages/error/Error';
 
 function App() {
+  const user = true;
+
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/watch' element={<Watch />} />
-        <Route path='*' element={<Error />} />
+
+        <Route
+          path='/'
+          exact
+          element={
+            user ? <Home /> :
+              <Navigate to="/register" replace />
+          }
+        />
+        <Route
+          path='/register'
+          element={
+            !user ? <Register /> :
+              <Navigate to="/" replace />
+          }
+        /><Route
+          path='/login'
+          element={
+            !user ? <Login /> :
+              <Navigate to="/" replace />
+          }
+        />
+        {
+          user && (
+            <>
+              <Route path='/movies' element={<Home type="movie" />} />
+              <Route path='/series' element={<Home type="series" />} />
+              <Route path='/watch' element={<Watch />} />
+              <Route path='*' element={<Error />} />
+            </>
+          )
+        }
+
+
       </Routes>
     </Router>
   );

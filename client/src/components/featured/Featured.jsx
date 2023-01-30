@@ -1,7 +1,33 @@
 import './featured.scss'
 import { InfoOutlined, PlayArrow } from '@mui/icons-material';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const tokenUrl = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDU3OGFiNDNiMGQxZWQ0OTY2YmRlNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3NTA3ODU1MSwiZXhwIjoxNjc1NTEwNTUxfQ.bsZ4nLzWrBUybk6SYN-7WDQwxCwhMG3nIdrmry_ni5s";
+
 
 const Featured = ({ type }) => {
+    const [content, setContent] = useState({});
+
+    useEffect(() => {
+        const getRandomContent = async () => {
+            try {
+                const res = await axios.get(
+                    `http://localhost:8000/api/movies/random?type=${type }`, {
+                    headers: {
+                        token: tokenUrl
+                    }
+                }
+                );
+                setContent(res.data[0]);
+            } catch (err) {
+                console.log(err.message);
+            }
+        }
+        getRandomContent();
+    }, [type]);
+
+
     return (
         <div className='featured'>
             {
@@ -30,16 +56,16 @@ const Featured = ({ type }) => {
                 )
             }
             <img
-                src="../../images/profile-photo.webp"
+                src={content.img}
                 alt=""
             />
             <div className="info">
                 <img
-                    src="../../images/martix.png"
+                    src={content.imgTitle}
                     alt=""
                 />
                 <span className="desc">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi deserunt excepturi, modi, earum tenetur neque quis minima libero veritatis dolores placeat quidem ullam sint cum perspiciatis architecto eius quas assumenda illum, sunt quibusdam asperiores qui iste nesciunt?
+                {content.desc}
                 </span>
                 <div className="buttons">
                     <button className="play">
