@@ -1,15 +1,35 @@
 import { Link, useLocation } from "react-router-dom";
 import "./movie.css";
 import { Publish } from "@mui/icons-material";
+import {createMovie} from '../../context/movieContext/movieApiCalls';
+import {MovieContext} from '../../context/movieContext/MovieContext';
+import { useContext, useState } from "react";
 
 const Movie = () => {
+    const [updatedMovie, setUpdatedMovie] = useState(null);
+    const [updatedTrailer, setUpdatedTrailer] = useState(null);
+    const [updatedVideo, setUpdatedVideo] = useState(null);
     const location = useLocation();
     const {movie} = location.state;
-    console.log(movie);
+    const {dispatch} = useContext(MovieContext);
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setUpdatedMovie({ ...updatedMovie, [e.target.name]: value });
+    };
+
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        console.log(updatedMovie)
+        //createMovie(updatedMovie, dispatch);
+    }
+    
 
     const {
         _id,
         title,
+        desc,
         img,
         genre,
         year,
@@ -68,17 +88,26 @@ const Movie = () => {
                 <form className="movieForm">
                     <div className="movieFormLeft">
                         <label>Movie Title</label>
-                        <input type="text" placeholder={title} />
+                        <input type="text" placeholder={title} 
+                            name="title" onChange={handleChange}/>
+                        <label>Movie Description</label>
+                        <input type="text" placeholder={desc} 
+                            name="desc" onChange={handleChange}/>
                         <label>Year</label>
-                        <input type="text" placeholder={year} />                       
+                        <input type="text" placeholder={year} 
+                            name="year" onChange={handleChange}/>                       
                         <label>Genre</label>
-                        <input type="text" placeholder={genre} />                       
+                        <input type="text" placeholder={genre} 
+                            name="genre" onChange={handleChange}/>                       
                         <label>Limit</label>
-                        <input type="number" placeholder={limit} />                       
+                        <input type="number" placeholder={limit} 
+                            name="limit" onChange={handleChange}/>                       
                         <label>Trailer</label>
-                        <input type="file" placeholder={trailer} />                       
+                        <input type="file" placeholder={trailer} 
+                            name="trailer" onChange={(e) => setUpdatedTrailer(e.target.files[0])}/>                       
                         <label>Video</label>
-                        <input type="file" placeholder={video} />                                             
+                        <input type="file" placeholder={video} 
+                            name="video" onChange={(e) => setUpdatedVideo(e.target.files[0])}/>                                             
                     </div>
                     <div className="movieFormRight">
                         <div className="movieUpload">
@@ -88,7 +117,9 @@ const Movie = () => {
                             </label>
                             <input type="file" id="file" style={{ display: "none" }} />
                         </div>
-                        <button className="movieButton">Update</button>
+                        <button className="movieButton" onClick={handleUpdate}>
+                            Update
+                        </button>
                     </div>
                 </form>
             </div>

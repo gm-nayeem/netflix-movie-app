@@ -34,6 +34,24 @@ export const createMovieFailure = () => (
     }
 );
 
+// update movie
+export const updateMovieStart = () => (
+    {
+        type: "UPDATE_MOVIE_START",
+    }
+);
+export const updateMovieSuccessful = (movie) => (
+    {
+        type: "UPDATE_MOVIE_SUCCESS",
+        payload: movie
+    }
+);
+export const updateMovieFailure = () => (
+    {
+        type: "UPDATE_MOVIE_FAILURE",
+    }
+);
+
 // delete movie
 export const deleteMovieStart = () => (
     {
