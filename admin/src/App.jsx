@@ -1,35 +1,62 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './app.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate
+} from 'react-router-dom'
 
 // pages
 import Home from './pages/home/Home'
 import UserList from './pages/userList/UserList'
 import User from './pages/user/User'
 import NewUser from './pages/newUser/NewUser'
-import ProductList from './pages/productList/ProductList'
-import Product from './pages/product/Product'
-import NewProduct from './pages/newProduct/NewProduct'
+import MovieList from './pages/movieList/MovieList'
+import Movie from './pages/movie/Movie'
+import NewMovie from './pages/newMovie/NewMovie'
 import Topbar from './components/topbar/Topbar'
 import Sidebar from './components/sidebar/Sidebar'
+import Login from './pages/login/Login'
+import { AuthContext } from './context/authContext/AuthContext'
 
 
 const App = () => {
-  
+  const { user } = useContext(AuthContext);
+
   return (
     <Router>
       <Topbar />
 
       <div className="container">
-        <Sidebar />       
+        <Sidebar />
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/users' element={<UserList />} />
-          <Route path='/user/:userId' element={<User />} />
-          <Route path='/newuser' element={<NewUser />} />
-          <Route path='/products' element={<ProductList />} />
-          <Route path='/product/:productId' element={<Product />} />
-          <Route path='/newproduct' element={<NewProduct />} />
+          <Route
+            path='/'
+            element={
+              user ? <Home /> :
+                <Navigate to="/login" replace />
+            }
+          />
+          {
+            user && (
+              <>
+                <Route path='/users' element={<UserList />} />
+                <Route path='/user/:userId' element={<User />} />
+                <Route path='/newuser' element={<NewUser />} />
+                <Route path='/movies' element={<MovieList />} />
+                <Route path='/movies/:movieId' element={<Movie />} />
+                <Route path='/newmovie' element={<NewMovie />} />
+              </>
+            )
+          }
+          <Route
+            path='/login'
+            element={
+              !user ? <Login /> :
+                <Navigate to="/" replace />
+            }
+          />
         </Routes>
       </div>
     </Router>
