@@ -33,13 +33,18 @@
 
 .addMovieButton {
     height: 30px;
+    width: 180px;
     margin-top: 10px;
-    padding: 7px 10px;
+    padding: 10px;
+    font-size: 16px;
     border: none;
     border-radius: 10px;
     background-color: darkblue;
     color: white;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
