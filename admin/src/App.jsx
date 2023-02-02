@@ -15,6 +15,7 @@ import NewUser from './pages/newUser/NewUser'
 import MovieList from './pages/movieList/MovieList'
 import Movie from './pages/movie/Movie'
 import NewMovie from './pages/newMovie/NewMovie'
+import ListList from './pages/listList/ListList'
 import Topbar from './components/topbar/Topbar'
 import Sidebar from './components/sidebar/Sidebar'
 import Login from './pages/login/Login'
@@ -47,6 +48,7 @@ const App = () => {
                 <Route path='/movies' element={<MovieList />} />
                 <Route path='/movies/:movieId' element={<Movie />} />
                 <Route path='/newmovie' element={<NewMovie />} />
+                <Route path='/lists' element={<ListList />} />
               </>
             )
           }

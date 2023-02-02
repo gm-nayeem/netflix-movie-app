@@ -4,7 +4,7 @@ import {
     Timeline,
     TrendingUp,
     PermIdentity,
-    AttachMoney,
+    List,
     BarChart,
     MailOutline,
     DynamicFeed,
@@ -52,11 +52,12 @@ const Sidebar = () => {
                                 <PlayCircleOutline className="sidebarIcon" />
                                 Movies
                             </li>
+                        </Link><Link to="/lists" className="link">
+                            <li className="sidebarListItem">
+                                <List className="sidebarIcon" />
+                                Lists
+                            </li>
                         </Link>
-                        <li className="sidebarListItem">
-                            <AttachMoney className="sidebarIcon" />
-                            Transactions
-                        </li>
                         <li className="sidebarListItem">
                             <BarChart className="sidebarIcon" />
                             Reports
