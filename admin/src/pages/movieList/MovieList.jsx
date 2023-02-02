@@ -2,7 +2,7 @@ import './movieList.css'
 import { DataGrid } from '@mui/x-data-grid';
 import {DeleteOutline} from '@mui/icons-material'
 import {Link} from 'react-router-dom'
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { MovieContext } from '../../context/movieContext/MovieContext';
 import { getMovies, deleteMovie } from '../../context/movieContext/movieApiCalls';
 

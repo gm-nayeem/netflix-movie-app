@@ -1,12 +1,12 @@
 import './listList.css'
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid'
 import {DeleteOutline} from '@mui/icons-material'
 import {Link} from 'react-router-dom'
 import { useContext, useEffect } from 'react';
-import { ListContext } from '../../context/listContext/ListContext';
-import { getLists } from '../../context/listContext/listApiCalls';
+import {ListContext} from '../../context/listContext/ListContext'
+import {getLists, deleteList} from '../../context/listContext/listApiCalls'
 
-const ProductList = () => {
+const ListList = () => {
   const {lists, dispatch} = useContext(ListContext);
 
   useEffect(() => {
@@ -14,13 +14,14 @@ const ProductList = () => {
   }, [dispatch]);
 
   const handleDelete = (id)=> {
-    // deleteMovie(id, dispatch);
+    deleteList(id, dispatch);
   }
+
 
   const columns = [
     { field: '_id', headerName: 'ID', width: 220 },
-    { field: 'title', headerName: 'Title', width: 200 },
-    { field: 'type', headerName: 'Type', width: 160 },
+    { field: 'title', headerName: 'Title', width: 220 },
+    { field: 'type', headerName: 'Type', width: 140 },
     { field: 'genre', headerName: 'Genre', width: 160 },
     {
       field: "action",
@@ -56,4 +57,4 @@ const ProductList = () => {
   )
 }
 
-export default ProductList
+export default ListList;
