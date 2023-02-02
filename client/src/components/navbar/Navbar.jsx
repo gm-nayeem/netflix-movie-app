@@ -1,10 +1,13 @@
 import './navbar.scss';
 import { Search, Notifications, ArrowDownward } from '@mui/icons-material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { logout } from '../../context/authContext/AuthActions';
+import { AuthContext } from '../../context/authContext/AuthContext';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const {dispatch} = useContext(AuthContext);
 
     window.onscroll = () => {
         setIsScrolled(window.pageYOffset === 0 ? false : true)
@@ -15,10 +18,12 @@ const Navbar = () => {
         <div className={isScrolled ? "navbar scrolled" : "navbar"} >
             <div className="container">
                 <div className="left">
-                    <img
-                        src="../../images/netflix-logo.png"
-                        alt=""
-                    />
+                    <Link to="/" className='link'>
+                        <img
+                            src="../../images/netflix-logo.png"
+                            alt=""
+                        />
+                    </Link>
                     <Link to="/" className='link'>
                         <span>Homepage</span>
                     </Link>
@@ -43,7 +48,7 @@ const Navbar = () => {
                         <ArrowDownward className='icon' />
                         <div className="options">
                             <span>Setting</span>
-                            <span>Logout</span>
+                            <span onClick={() => dispatch(logout())}>Logout</span>
                         </div>
                     </div>
                 </div>

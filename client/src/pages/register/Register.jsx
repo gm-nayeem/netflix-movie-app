@@ -1,19 +1,33 @@
 import { useState, useRef } from 'react';
 import './register.scss';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Register = () => {
     const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("")
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const emailRef = useRef();
+    const usernameRef = useRef();
     const passwordRef = useRef();
 
     const handleStart = () => {
         setEmail(emailRef.current.value)
-    } 
-    
-    const handleFinish = () => {
-        setPassword(passwordRef.current.value)
+    }
+
+    const handleFinish = async (e) => {
+        e.preventDefault();
+
+        setPassword(passwordRef.current.value);
+        setUsername(usernameRef.current.value);
+
+        await axios.post("http://localhost:8000/api/auth/register", {
+            username, email, password
+        });
+
+        navigate("/login");
     }
 
     return (
@@ -25,9 +39,11 @@ const Register = () => {
                         src="../../images/netflix-logo.png"
                         alt=""
                     />
-                    <button className="loginButton">
-                        Sign In
-                    </button>
+                    <Link to="/login">
+                        <button className="loginButton">
+                            Sign In
+                        </button>
+                    </Link>
                 </div>
             </div>
             <div className="container">
@@ -43,6 +59,7 @@ const Register = () => {
                                 type="email"
                                 placeholder='email address'
                                 ref={emailRef}
+                                required
                             />
                             <button
                                 className='registerButton'
@@ -54,9 +71,16 @@ const Register = () => {
                     ) : (
                         <form className='input'>
                             <input
+                                type="username"
+                                placeholder='username'
+                                ref={usernameRef}
+                                required
+                            />
+                            <input
                                 type="password"
                                 placeholder='password'
                                 ref={passwordRef}
+                                required
                             />
                             <button
                                 className='registerButton'

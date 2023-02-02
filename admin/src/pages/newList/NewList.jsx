@@ -42,11 +42,11 @@ const NewList = () => {
         <div className="formLeft">
           <div className="addListItem">
             <label>Title</label>
-            <input type="text" placeholder="John Wick" name="title" onChange={handleChange} />
+            <input type="text" placeholder="popular movies" name="title" onChange={handleChange} />
           </div>
           <div className="addListItem">
             <label>Genre</label>
-            <input type="text" placeholder="genre" name="genre" onChange={handleChange} />
+            <input type="text" placeholder="action" name="genre" onChange={handleChange} />
           </div>
           <div className="addListItem">
             <label>Type</label>

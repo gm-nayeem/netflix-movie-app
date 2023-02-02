@@ -1,14 +1,17 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import './login.scss'
+import { Link } from 'react-router-dom';
+import { login } from '../../context/authContext/authApiCalls';
+import { AuthContext } from '../../context/authContext/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {dispatch} = useContext(AuthContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setEmail("");
-    setPassword("");
+    login({email, password}, dispatch);
   }
 
   return (
@@ -41,7 +44,7 @@ const Login = () => {
             Sign In
           </button>
           <span>
-            New to Netflix? <b>Sign up now.</b>
+            New to Netflix? <Link to="/register" className='link'><b>Sign up now.</b></Link>
           </span>
           <small>
             This page is protected by Google reCAPTCHA to ensure you're not a
