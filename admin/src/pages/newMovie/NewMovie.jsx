@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./newMovie.css";
 import {createMovie} from '../../context/movieContext/movieApiCalls';
 import { MovieContext } from "../../context/movieContext/MovieContext";
+import {useNavigate} from 'react-router-dom';
 
 // firebase
 import {
@@ -21,6 +22,7 @@ const NewMovie = () => {
   const [trailer, setTrailer] = useState(null);
   const [video, setVideo] = useState(null);
   const [uploaded, setUploaded] = useState(0);
+  const navigate = useNavigate();
 
   const {dispatch} = useContext(MovieContext);
 
@@ -79,6 +81,7 @@ const NewMovie = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createMovie(movie, dispatch);
+    navigate("/movies")
   };
 
 

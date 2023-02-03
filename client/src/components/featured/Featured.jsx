@@ -38,6 +38,7 @@ const Featured = ({ type, setGenre }) => {
                         <select name="genre" id="genre" onChange={(e) => setGenre(e.target.value)}>
                             <option>Genre</option>
                             <option value="adventure">Adventure</option>
+                            <option value="action">Action</option>
                             <option value="comedy">Comedy</option>
                             <option value="crime">Crime</option>
                             <option value="fantasy">Fantasy</option>
@@ -59,10 +60,10 @@ const Featured = ({ type, setGenre }) => {
                 alt=""
             />
             <div className="info">
-                <img
+                {/* <img
                     src={content.imgTitle}
                     alt=""
-                />
+                /> */}
                 <span className="desc">
                 {content.desc}
                 </span>
