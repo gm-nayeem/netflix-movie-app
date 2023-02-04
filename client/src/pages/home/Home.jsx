@@ -5,7 +5,7 @@ import List from '../../components/list/List';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const tokenUrl = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDU3OGFiNDNiMGQxZWQ0OTY2YmRlNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3NTA3ODU1MSwiZXhwIjoxNjc1NTEwNTUxfQ.bsZ4nLzWrBUybk6SYN-7WDQwxCwhMG3nIdrmry_ni5s";
+// const tokenUrl = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDU3OGFiNDNiMGQxZWQ0OTY2YmRlNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3NTA3ODU1MSwiZXhwIjoxNjc1NTEwNTUxfQ.bsZ4nLzWrBUybk6SYN-7WDQwxCwhMG3nIdrmry_ni5s";
 
 const Home = ({type}) => {
   const [lists, setLists] = useState([]);
@@ -14,10 +14,11 @@ const Home = ({type}) => {
   useEffect(() => {
     const getRandomLists = async () => {
       try{
+        const accessToken = JSON.parse(localStorage.getItem("user")).accessToken;
         const res = await axios.get(
           `http://localhost:8000/api/lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`, {
             headers: {
-              token: tokenUrl
+              token: `Bearer ${accessToken}`
             }
           }
         );

@@ -1,0 +1,9 @@
+.error {
+    flex: 4;
+    padding: 20px;
+}
+
+h1{
+    color: red;
+    text-align: center;
+}

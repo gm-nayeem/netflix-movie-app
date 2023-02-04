@@ -19,7 +19,7 @@ import {
 export const getLists = async (dispatch) => {
     dispatch(getListsStart());
     try{
-        const accessToken = JSON.parse(localStorage.getItem("user")).accessToken;
+        const accessToken = JSON.parse(localStorage.getItem("admin")).accessToken;
         const res = await axios.get("http://localhost:8000/api/lists", {
             headers: {
                 token: `Bearer ${accessToken}`
@@ -35,7 +35,7 @@ export const getLists = async (dispatch) => {
 export const createList = async (list, dispatch) => {
     dispatch(createListStart());
     try{
-        const accessToken = JSON.parse(localStorage.getItem("user")).accessToken;
+        const accessToken = JSON.parse(localStorage.getItem("admin")).accessToken;
         const res = await axios.post("http://localhost:8000/api/lists", list, {
             headers: {
                 token: `Bearer ${accessToken}`
@@ -51,7 +51,7 @@ export const createList = async (list, dispatch) => {
 export const updateList= async (list, dispatch) => {
     dispatch(updateListStart());
     try{
-        const accessToken = JSON.parse(localStorage.getItem("user")).accessToken;
+        const accessToken = JSON.parse(localStorage.getItem("admin")).accessToken;
         const res = await axios.put("http://localhost:8000/api/lists/"+list._id, list, {
             headers: {
                 token: `Bearer ${accessToken}`
@@ -67,7 +67,7 @@ export const updateList= async (list, dispatch) => {
 export const deleteList = async (id, dispatch) => {
     dispatch(deleteListStart());
     try{
-        const accessToken = JSON.parse(localStorage.getItem("user")).accessToken;
+        const accessToken = JSON.parse(localStorage.getItem("admin")).accessToken;
         await axios.delete("http://localhost:8000/api/lists/"+id, {
             headers: {
                 token: `Bearer ${accessToken}`

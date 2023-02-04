@@ -3,7 +3,6 @@ import { Visibility } from "@mui/icons-material";
 import { useState, useEffect } from 'react'
 import axios from "axios";
 
-const tokenUrl = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDU3OGFiNDNiMGQxZWQ0OTY2YmRlNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3NTA3ODU1MSwiZXhwIjoxNjc1NTEwNTUxfQ.bsZ4nLzWrBUybk6SYN-7WDQwxCwhMG3nIdrmry_ni5s";
 
 export default function WidgetSm() {
     const [newUser, setNewUser] = useState([]);
@@ -11,10 +10,11 @@ export default function WidgetSm() {
     useEffect(() => {
         const getNewUser = async () => {
             try {
+                const accessToken = JSON.parse(localStorage.getItem("admin")).accessToken;
                 const res = await axios.get(
                     "http://localhost:8000/api/users?new=true", {
                     headers: {
-                        token: tokenUrl
+                        token: `Bearer ${accessToken}`
                     }
                 }
                 );

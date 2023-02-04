@@ -4,10 +4,10 @@ export const loginStart = () => (
         type: "LOGIN_START",
     }
 );
-export const loginSuccessful = (user) => (
+export const loginSuccessful = (admin) => (
     {
         type: "LOGIN_SUCCESSFUL",
-        payload: user
+        payload: admin
     }
 );
 export const loginFailure = () => (

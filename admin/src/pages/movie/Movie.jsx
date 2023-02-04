@@ -115,13 +115,6 @@ const Movie = () => {
                 </Link>
             </div>
             <div className="movieTop">
-                {/* <div className="movieTopLeft">
-                    <Chart
-                        data={productData}
-                        title="Sales Performance"
-                        dataKey="Sales"                     
-                    />
-                </div> */}
                 <div className="movieTopRight">
                     <div className="movieInfoTop">
                         <img src={img} alt="" className="movieInfoImg" />

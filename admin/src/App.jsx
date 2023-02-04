@@ -22,6 +22,7 @@ import Topbar from './components/topbar/Topbar'
 import Sidebar from './components/sidebar/Sidebar'
 import Login from './pages/login/Login'
 import { AuthContext } from './context/authContext/AuthContext'
+import Error from './pages/error/Error'
 
 
 const App = () => {
@@ -45,7 +46,7 @@ const App = () => {
             user && (
               <>
                 <Route path='/users' element={<UserList />} />
-                <Route path='/user/:userId' element={<User />} />
+                <Route path='/users/:userId' element={<User />} />
                 <Route path='/newuser' element={<NewUser />} />
                 <Route path='/movies' element={<MovieList />} />
                 <Route path='/movies/:movieId' element={<Movie />} />
@@ -63,6 +64,7 @@ const App = () => {
                 <Navigate to="/" replace />
             }
           />
+          <Route path='*' element={<Error />} />
         </Routes>
       </div>
     </Router>

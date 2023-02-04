@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import './login.css'
-import {login} from '../../context/authContext/authApiCalls';
 import { useContext } from 'react';
+import {login} from '../../context/authContext/authApiCalls';
 import { AuthContext } from '../../context/authContext/AuthContext';
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     const { isFetching, dispatch } = useContext(AuthContext);
 
     const handleLogin = (e) => {

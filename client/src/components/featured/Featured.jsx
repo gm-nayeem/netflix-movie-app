@@ -3,7 +3,7 @@ import { InfoOutlined, PlayArrow } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const tokenUrl = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDU3OGFiNDNiMGQxZWQ0OTY2YmRlNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3NTA3ODU1MSwiZXhwIjoxNjc1NTEwNTUxfQ.bsZ4nLzWrBUybk6SYN-7WDQwxCwhMG3nIdrmry_ni5s";
+// const tokenUrl = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDU3OGFiNDNiMGQxZWQ0OTY2YmRlNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3NTA3ODU1MSwiZXhwIjoxNjc1NTEwNTUxfQ.bsZ4nLzWrBUybk6SYN-7WDQwxCwhMG3nIdrmry_ni5s";
 
 const Featured = ({ type, setGenre }) => {
     const [content, setContent] = useState({});
@@ -11,10 +11,11 @@ const Featured = ({ type, setGenre }) => {
     useEffect(() => {
         const getRandomContent = async () => {
             try {
+                const accessToken = JSON.parse(localStorage.getItem("user")).accessToken;
                 const res = await axios.get(
                     `http://localhost:8000/api/movies/random?type=${type }`, {
                     headers: {
-                        token: tokenUrl
+                        token: `Bearer ${accessToken}`
                     }
                 }
                 );
