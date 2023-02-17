@@ -8,17 +8,20 @@ import {
 } from "@mui/icons-material";
 import { AuthContext } from '../../context/authContext/AuthContext';
 import { logout } from '../../context/authContext/AuthActions';
+import { Link } from "react-router-dom";
 
 
 const Navbar = () => {
-  const { dispatch } = useContext(AuthContext);
+  const { admin, dispatch } = useContext(AuthContext);
 
   return (
     <div className='topbar'>
       <div className="topbarWrapper">
-        <div className="topLeft">
-          <span className="logo">mernadmin</span>
-        </div>
+        <Link to="/" className="link">
+          <div className="topLeft">
+            <span className="logo">mernadmin</span>
+          </div>
+        </Link>
 
         <div className="topRight">
           <div className="topbarIconContainer">
@@ -32,12 +35,12 @@ const Navbar = () => {
           <div className="topbarIconContainer">
             <Settings />
           </div>
-          <div className="topbarIconContainer">
-            <Settings />
-          </div>
-          <div className="topbarIconContainer">
-            <img src="https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="topAvatar" />
-          </div>
+          <Link to={`/users/${admin?._id}`} state={{ user: admin }}>
+            <div className="topbarIconContainer">
+              <img src={admin?.profilePic ? admin?.profilePic : "https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"}
+                alt="" className="topAvatar" />
+            </div>
+          </Link>
           <div className=" profile">
             <ArrowDropDown className='icon' />
             <div className="options">

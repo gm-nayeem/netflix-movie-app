@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/authContext/AuthContext';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-    const {dispatch} = useContext(AuthContext);
+    const {user, dispatch} = useContext(AuthContext);
 
     window.onscroll = () => {
         setIsScrolled(window.pageYOffset === 0 ? false : true)
@@ -20,7 +20,7 @@ const Navbar = () => {
                 <div className="left">
                     <Link to="/" className='link'>
                         <img
-                            src="../../images/netflix-logo.png"
+                            src={"../../images/netflix-logo.png" }
                             alt=""
                         />
                     </Link>
@@ -41,7 +41,7 @@ const Navbar = () => {
                     <span>KID</span>
                     <Notifications className='icon' />
                     <img
-                        src="../../images/profile-photo.webp"
+                        src={user.profilePic ? user.profilePic : "../../images/profile-photo.webp"}
                         alt=""
                     />
                     <div className="profile">

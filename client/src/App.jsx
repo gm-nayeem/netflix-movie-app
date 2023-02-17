@@ -18,8 +18,7 @@ function App() {
       <Routes>
 
         <Route
-          path='/'
-          exact
+          exact path='/'
           element={
             user ? <Home /> :
               <Navigate to="/register" replace />
@@ -31,7 +30,8 @@ function App() {
             !user ? <Register /> :
               <Navigate to="/" replace />
           }
-        /><Route
+        />
+        <Route
           path='/login'
           element={
             !user ? <Login /> :

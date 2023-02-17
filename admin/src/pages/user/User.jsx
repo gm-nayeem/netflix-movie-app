@@ -55,7 +55,7 @@ const User = () => {
           setUpdatedUser(prev => {
             return {
               ...prev,
-              ["profilePic"]: downloadURL
+              "profilePic": downloadURL
             }
           });
 
@@ -86,7 +86,7 @@ const User = () => {
     email,
     profilePic,
     isAdmin
-  } = user
+  } = user;
 
   return (
     <div className="user">

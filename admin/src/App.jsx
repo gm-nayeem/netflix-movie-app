@@ -26,7 +26,7 @@ import Error from './pages/error/Error'
 
 
 const App = () => {
-  const { user } = useContext(AuthContext);
+  const { admin } = useContext(AuthContext);
 
   return (
     <Router>
@@ -36,14 +36,14 @@ const App = () => {
         <Sidebar />
         <Routes>
           <Route
-            path='/'
+            exact path='/'
             element={
-              user ? <Home /> :
+              admin ? <Home /> :
                 <Navigate to="/login" replace />
             }
           />
           {
-            user && (
+            admin && (
               <>
                 <Route path='/users' element={<UserList />} />
                 <Route path='/users/:userId' element={<User />} />
@@ -60,7 +60,7 @@ const App = () => {
           <Route
             path='/login'
             element={
-              !user ? <Login /> :
+              !admin ? <Login /> :
                 <Navigate to="/" replace />
             }
           />
